@@ -1,11 +1,9 @@
 <template>
-  <h1>Sign in page</h1>
-  <router-link to="/signup">Sign up</router-link>
+  <signin-form />
 </template>
   
-  <script>
-export default {}
+<script setup lang="ts">
+import { AppContent } from '../../../utils/content'
+import SigninForm from '../widgets/SigninForm.vue'
 </script>
   
-  <style>
-</style>
