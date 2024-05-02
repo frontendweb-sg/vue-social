@@ -11,3 +11,48 @@ export enum Proficiency {
   intermediate = 'Intermediate',
   expert = 'expert'
 }
+
+export interface Signin {
+  email: string
+  password: string
+}
+
+export interface Signup {
+  name: string
+  email: string
+  password: string
+  mobile: string
+}
+export interface Media {
+  public_id: string
+  url: string
+  resource_type?: string
+  access_mode?: string
+  folder?: string
+  version?: string
+  signature: string
+}
+export interface IUser {
+  id?: string
+  name: string
+  email: string
+  password: string
+  mobile: string
+  avatar: Media
+  role: string
+  active: string
+  emailVerify: boolean
+  accessToken: string
+}
+interface Auth {
+  loading: boolean
+  user: IUser | null
+  token: string
+  avatar?: string
+  redirectedUrl: string
+}
+interface AuthResponse {
+  user: IUser | null
+  accessToken: string
+  expireIn: number
+}

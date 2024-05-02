@@ -19,7 +19,7 @@ import { useForm } from 'vee-validate'
 import { object, string } from 'yup'
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
-import AuthForm from '../widgets/AuthForm.vue'
+import AuthForm from '../../widgets/AuthForm.vue'
 import { AppContent } from '@/utils/content'
 const validation = object({
   email: string().email().required('Email is required!')

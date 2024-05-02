@@ -31,6 +31,10 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import AuthForm from '../widgets/AuthForm.vue'
 import { KeyRound } from 'lucide-vue-next'
 import { AppContent } from '@/utils/content'
+import { useAuthStore } from '../store/auth'
+
+const authStore = useAuthStore()
+
 const validation = object({
   email: string().email().required('Email is required!'),
   password: string().required('Password is required')
@@ -45,7 +49,8 @@ const onFormReset = () => {
 }
 
 const onSubmit = handleSubmit((values) => {
-  alert(JSON.stringify(values, null, 2))
+  // alert(JSON.stringify(values, null, 2))
+  authStore.login(values)
   handleReset()
 })
 </script>
