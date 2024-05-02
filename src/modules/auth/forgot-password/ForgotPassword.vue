@@ -1,27 +1,18 @@
 <template>
   <auth-form
-    to="/signup"
-    :title="AppContent.signin"
-    :link-text="AppContent.signup"
+    to="/"
+    :title="AppContent.forgotPassword"
+    :link-text="AppContent.signin"
     :subtitle="AppContent.loginSubtitle"
     @submit="onSubmit"
   >
     <base-input name="email" placeholder="Enter email id" />
-    <base-input name="password" type="password" placeholder="Password" />
-
-    <div class="flex items-center justify-between text-xs">
-      <label class="py-2 space-x-2 block">
-        <input type="checkbox" /> <span>{{ AppContent.rememberMe }}</span>
-      </label>
-      <router-link class="text-rose-600 flex items-center font-medium" to="/forgot-password"
-        ><KeyRound :size="14" class="mr-2" /> Forgot Password</router-link
-      >
-    </div>
     <base-button class="bg-slate-900 px-6 py-2 rounded-md text-white w-full" type="submit">{{
-      AppContent.signin
+      AppContent.send
     }}</base-button>
   </auth-form>
 </template>
+
 
 <script lang="ts" setup>
 import { useForm } from 'vee-validate'
@@ -31,8 +22,7 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import AuthForm from '../widgets/AuthForm.vue'
 import { AppContent } from '@/utils/content'
 const validation = object({
-  email: string().email().required('Email is required!'),
-  password: string().required('Password is required')
+  email: string().email().required('Email is required!')
 })
 
 const { handleReset, handleSubmit, meta } = useForm({
