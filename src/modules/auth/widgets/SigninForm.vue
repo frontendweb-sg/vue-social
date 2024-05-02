@@ -13,8 +13,8 @@
       <label class="py-2 space-x-2 block">
         <input type="checkbox" /> <span>{{ AppContent.rememberMe }}</span>
       </label>
-      <router-link class="text-rose-600 flex items-center font-medium" to="/forgot-password"
-        ><KeyRound :size="14" class="mr-2" /> Forgot Password</router-link
+      <router-link class="text-rose-600 flex items-center font-medium" to="/forgot-password">
+        <KeyRound :size="14" class="mr-2" /> Forgot Password</router-link
       >
     </div>
     <base-button class="bg-slate-900 px-6 py-2 rounded-md text-white w-full" type="submit">{{
@@ -29,6 +29,7 @@ import { object, string } from 'yup'
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import AuthForm from '../widgets/AuthForm.vue'
+import { KeyRound } from 'lucide-vue-next'
 import { AppContent } from '@/utils/content'
 const validation = object({
   email: string().email().required('Email is required!'),

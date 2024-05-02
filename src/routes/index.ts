@@ -4,7 +4,7 @@ import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: () => import('@/modules/auth/index.vue'),
+    component: () => import(/* webpackChunkName: "auth" */ '@/modules/auth/index.vue'),
     alias: ['/signin'],
     children: [
       {
@@ -22,6 +22,13 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/user',
+    component: () => import(/* webpackChunkName: "user" */ '@/modules/user/index.vue'),
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
     path: '/:matchPath(.*)',
     component: () => import('@/pages/NotFound.vue')
   }
@@ -36,6 +43,12 @@ const router = createRouter({
     } else {
     }
   }
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((route) => route.meta.requireAuth)) {
+    return next('/')
+  } else next()
 })
 
 export default router
