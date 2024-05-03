@@ -1,10 +1,11 @@
 import { createApp, markRaw } from 'vue'
 import App from './App.vue'
-import { createPinia } from 'pinia'
 
-import './assets/main.css'
-import 'vue3-toastify/dist/index.css'
 import router from './routes'
+import { pinia } from './pinia'
+
+import 'vue3-toastify/dist/index.css'
+import './assets/main.css'
 
 const app = createApp(App)
 
@@ -15,10 +16,6 @@ const app = createApp(App)
 // global provider
 
 // pinia
-const pinia = createPinia()
-pinia.use(({ store }) => {
-  store.router = markRaw(router)
-})
 app.use(pinia)
 
 // routes

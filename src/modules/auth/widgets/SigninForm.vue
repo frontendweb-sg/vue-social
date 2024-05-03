@@ -31,9 +31,8 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 import AuthForm from '../widgets/AuthForm.vue'
 import { KeyRound } from 'lucide-vue-next'
 import { AppContent } from '@/utils/content'
-import { useAuthStore } from '../store/auth'
+import { useAuthStore, type LoginRequest } from '../store/auth'
 import { storeToRefs } from 'pinia'
-import type { LoginRequest } from '@/types'
 
 const authStore = useAuthStore()
 const { loading, user } = storeToRefs(authStore)
@@ -47,10 +46,6 @@ const validation = object({
 const { handleReset, handleSubmit, meta } = useForm({
   validationSchema: validation
 })
-
-const onFormReset = () => {
-  handleReset()
-}
 
 const onSubmit = handleSubmit((values) => {
   authStore.login(values as LoginRequest)

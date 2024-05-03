@@ -55,7 +55,15 @@ router.beforeEach((to, from, next) => {
   const authStore = useAuthStore()
   if (to.matched.some((route) => route.meta.requireAuth) && !authStore.isAuth) {
     return next(`/?redirectUrl=${to.path}`)
-  } else next()
+  } else {
+    if (authStore.isAuth && !authStore.isAdmin && to.path === '/admin') {
+      return next('/user')
+    } else if (authStore.isAuth && !authStore.isUser && to.path === '/user') {
+      return next('/admin')
+    } else {
+      return next()
+    }
+  }
 })
 
 export default router

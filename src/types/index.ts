@@ -12,22 +12,6 @@ export enum Proficiency {
   expert = 'expert'
 }
 
-export interface LoginRequest {
-  email: string
-  password: string
-}
-export interface LoginResponse {
-  user: IUser
-  accessToken: string
-  expireIn: number
-}
-
-export interface Signup {
-  name: string
-  email: string
-  password: string
-  mobile: string
-}
 export interface Media {
   public_id: string
   url: string
