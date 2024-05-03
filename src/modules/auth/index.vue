@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gradient-to-r from-blue-600 to-violet-600 h-full">
-    <base-container>
+    <base-container class="max-w-[1280px]">
       <div class="grid h-screen grid-cols-2">
         <div class="col flex justify-center items-center flex-col">
           <div class="max-w-[450px] mx-auto">

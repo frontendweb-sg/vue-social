@@ -45,10 +45,10 @@ const router = createRouter({
   }
 })
 
-router.beforeEach((to, from, next) => {
-  if (to.matched.some((route) => route.meta.requireAuth)) {
-    return next('/')
-  } else next()
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.matched.some((route) => route.meta.requireAuth)) {
+//     return next('/')
+//   } else next()
+// })
 
 export default router

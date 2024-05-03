@@ -32,8 +32,12 @@ import AuthForm from '../widgets/AuthForm.vue'
 import { KeyRound } from 'lucide-vue-next'
 import { AppContent } from '@/utils/content'
 import { useAuthStore } from '../store/auth'
+import { storeToRefs } from 'pinia'
+import type { LoginRequest } from '@/types'
 
 const authStore = useAuthStore()
+const { loading, user } = storeToRefs(authStore)
+const { login } = authStore
 
 const validation = object({
   email: string().email().required('Email is required!'),
@@ -49,8 +53,7 @@ const onFormReset = () => {
 }
 
 const onSubmit = handleSubmit((values) => {
-  // alert(JSON.stringify(values, null, 2))
-  authStore.login(values)
+  authStore.login(values as LoginRequest)
   handleReset()
 })
 </script>

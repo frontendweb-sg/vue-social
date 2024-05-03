@@ -21,6 +21,7 @@ import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import AuthForm from '../../widgets/AuthForm.vue'
 import { AppContent } from '@/utils/content'
+
 const validation = object({
   firstname: string().required('First name is required'),
   lastname: string().required('Last name is required'),
@@ -39,6 +40,7 @@ const onFormReset = () => {
 
 const onSubmit = handleSubmit((values) => {
   alert(JSON.stringify(values, null, 2))
+
   handleReset()
 })
 </script>

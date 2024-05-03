@@ -12,9 +12,14 @@ export enum Proficiency {
   expert = 'expert'
 }
 
-export interface Signin {
+export interface LoginRequest {
   email: string
   password: string
+}
+export interface LoginResponse {
+  user: IUser
+  accessToken: string
+  expireIn: number
 }
 
 export interface Signup {
