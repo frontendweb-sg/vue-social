@@ -1,5 +1,5 @@
 import { useAuthStore } from '@/modules/auth/store/auth'
-import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import { type RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 
 // Routes
 const routes: RouteRecordRaw[] = [
@@ -47,7 +47,6 @@ const router = createRouter({
   scrollBehavior(to, from, scrollBehavior) {
     if (scrollBehavior) {
       return scrollBehavior
-    } else {
     }
   }
 })

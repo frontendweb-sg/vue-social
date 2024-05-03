@@ -1,6 +1,6 @@
 <template>
   <signin-form />
-</template>
+</template> 
   
 <script setup lang="ts">
 import { AppContent } from '@/utils/content'

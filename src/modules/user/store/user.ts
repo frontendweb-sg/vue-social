@@ -1,6 +1,6 @@
 import { Api } from '@/axios_instance'
 import type { IUser } from '@/types'
-import { defineStore, acceptHMRUpdate } from 'pinia'
+import { defineStore } from 'pinia'
 import { toast } from 'vue3-toastify'
 
 export const useUserStore = defineStore('userStore', {

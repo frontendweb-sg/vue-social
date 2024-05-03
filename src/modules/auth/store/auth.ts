@@ -1,6 +1,6 @@
 import { Api } from '@/axios_instance'
 import { defineStore } from 'pinia'
-import type { LoginResponse, LoginRequest, IUser } from '@/types'
+import type { IUser, LoginRequest, LoginResponse } from '@/types'
 import { toast } from 'vue3-toastify'
 import { useRoute, useRouter } from 'vue-router'
 

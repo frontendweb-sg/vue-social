@@ -49,15 +49,3 @@ export interface IUser {
   emailVerify: boolean
   accessToken: string
 }
-interface Auth {
-  loading: boolean
-  user: IUser | null
-  token: string
-  avatar?: string
-  redirectedUrl: string
-}
-interface AuthResponse {
-  user: IUser | null
-  accessToken: string
-  expireIn: number
-}
