@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/modules/auth/store/auth'
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
 
 // Routes
@@ -26,7 +27,13 @@ const routes: RouteRecordRaw[] = [
     component: () => import(/* webpackChunkName: "user" */ '@/modules/user/index.vue'),
     meta: {
       requireAuth: true
-    }
+    },
+    children: [
+      {
+        path: 'profile',
+        component: () => import(/* */ '@/modules/user/pages/profile/Profile.vue')
+      }
+    ]
   },
   {
     path: '/:matchPath(.*)',
@@ -45,10 +52,11 @@ const router = createRouter({
   }
 })
 
-// router.beforeEach((to, from, next) => {
-//   if (to.matched.some((route) => route.meta.requireAuth)) {
-//     return next('/')
-//   } else next()
-// })
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+  if (to.matched.some((route) => route.meta.requireAuth) && !authStore.isAuth) {
+    return next(`/?redirectUrl=${to.path}`)
+  } else next()
+})
 
 export default router

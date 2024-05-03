@@ -6,8 +6,18 @@
   </router-view>
 </template>
 
-<script>
-export default {}
+<script setup lang="ts">
+import { onMounted } from 'vue'
+import { useAuthStore } from './modules/auth/store/auth'
+
+const authStore = useAuthStore()
+const accessToken = localStorage.accessToken
+
+onMounted(() => {
+  if (accessToken) {
+    authStore.checkUserIsLoggedIn()
+  }
+})
 </script>
 
 <style>

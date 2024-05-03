@@ -1,9 +1,13 @@
 <template>
-  <h1>User page</h1>
+  <h1>User page - {{ count }}</h1>
 </template>
 
-<script>
-export default {}
+<script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useCountStore } from './store/counter'
+
+const countStore = useCountStore()
+const { count } = storeToRefs(countStore)
 </script>
 
 <style>

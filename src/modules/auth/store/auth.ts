@@ -1,17 +1,29 @@
 import { Api } from '@/axios_instance'
 import { defineStore } from 'pinia'
-import type { LoginResponse, LoginRequest } from '@/types'
+import type { LoginResponse, LoginRequest, IUser } from '@/types'
 import { toast } from 'vue3-toastify'
 import { useRoute, useRouter } from 'vue-router'
 
+interface AuthState {
+  loading: boolean
+  user: null | IUser
+  accessToken: null | string
+}
 /**
  * Auth store
  */
+let time: ReturnType<typeof setTimeout>
 export const useAuthStore = defineStore('auth', {
-  state() {
+  state(): AuthState {
     return {
       loading: false,
-      user: null
+      user: null,
+      accessToken: null
+    }
+  },
+  getters: {
+    isAuth(state) {
+      return !!state.accessToken
     }
   },
   actions: {
@@ -27,6 +39,9 @@ export const useAuthStore = defineStore('auth', {
         localStorage.setItem('accessToken', accessToken)
         localStorage.setItem('user', JSON.stringify(user))
 
+        this.autoLogout(expireIn)
+        this.checkUserIsLoggedIn()
+
         if (user.role == 'admin') {
           this.router.replace('/admin')
         }
@@ -38,6 +53,38 @@ export const useAuthStore = defineStore('auth', {
       } finally {
         this.loading = false
       }
+    },
+
+    logout() {
+      if (time) {
+        clearTimeout(time)
+      }
+
+      localStorage.removeItem('user')
+      localStorage.removeItem('accessToken')
+      localStorage.removeItem('expireTime')
+
+      this.user = null
+      this.accessToken = null
+    },
+
+    autoLogout(timer: number) {
+      time = setTimeout(() => this.logout(), timer * 1000)
+    },
+
+    checkUserIsLoggedIn() {
+      const accessToken = localStorage.getItem('accessToken')
+      const expireTime = Number(localStorage.getItem('expireTime'))
+      const user = JSON.parse(localStorage.getItem('user') as string) as IUser
+
+      if (new Date().getTime() > expireTime || !accessToken) {
+        return this.logout()
+      }
+
+      this.user = user
+      this.accessToken = accessToken
+
+      this.autoLogout((expireTime - Date.now()) / 1000)
     }
   }
 })

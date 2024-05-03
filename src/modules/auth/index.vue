@@ -48,6 +48,22 @@ import AppLogo from '../../components/layout/AppLogo.vue'
 import BaseContainer from '../../components/ui/BaseContainer.vue'
 import { AppContent } from '../../utils/content'
 import { Heart, Newspaper, Users } from 'lucide-vue-next'
+import { useAuthStore } from './store/auth'
+import { storeToRefs } from 'pinia'
+import { useRoute, useRouter } from 'vue-router'
+
+const authStore = useAuthStore()
+const route = useRoute()
+const router = useRouter()
+const { user, loading } = storeToRefs(authStore)
+
+if (user.value) {
+  let routePath = '/user'
+  if (user.value?.role == 'admin') {
+    routePath = '/admin'
+  }
+  router.replace(routePath)
+}
 </script>
 
 <style>

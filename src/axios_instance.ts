@@ -8,7 +8,7 @@ const instance = axios.create({
 })
 
 instance.interceptors.request.use((config) => {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem('accessToken')
   if (token) {
     config.headers['Authorization'] = `Bearer ${token}`
   } else {
@@ -17,8 +17,12 @@ instance.interceptors.request.use((config) => {
   return config
 })
 
-instance.interceptors.response.use((config) => {
-  return config
-})
+instance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if ((error.response.status = 401)) {
+    }
+  }
+)
 
 export { instance as Api }
