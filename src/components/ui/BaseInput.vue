@@ -27,20 +27,21 @@
 <script setup lang="ts">
 import { useField } from 'vee-validate'
 
-defineOptions({
-  inheritAttrs: false
-})
+defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(
   defineProps<{
     name: string
     label?: string
     type?: string
+    isPassowrd?: boolean
   }>(),
   {
-    type: 'text'
+    type: 'text',
+    isPassowrd: false
   }
 )
+
 const { meta, value, errorMessage, handleBlur, handleChange } = useField(
   props.name,
   {},

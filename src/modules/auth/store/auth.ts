@@ -23,7 +23,7 @@ export const useAuthStore = defineStore('auth', () => {
   // handlers
   function logout() {
     if (time) clearTimeout(time)
-    resetState()
+    $reset()
     router.push('/')
   }
 
@@ -80,7 +80,7 @@ export const useAuthStore = defineStore('auth', () => {
       toast.success('Account created successfully!, please login')
 
       setTimeout(() => {
-        router.replace('/auth')
+        router.replace('/')
       }, 3000)
     } catch (error) {
       raiseToast(error as Error)
@@ -89,7 +89,7 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  function resetState() {
+  function $reset() {
     loading.value = false
     user.value = null
     accessToken.value = null
@@ -114,7 +114,8 @@ export const useAuthStore = defineStore('auth', () => {
     logout,
     checkUserIsLoggedIn,
     login,
-    register
+    register,
+    $reset
   }
 
   // state(): AuthState {

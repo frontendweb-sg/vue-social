@@ -10,15 +10,27 @@ const routes: RouteRecordRaw[] = [
     children: [
       {
         path: '',
-        component: () => import('@/modules/auth/pages/signin/SigninPage.vue')
+        component: () =>
+          import(/* webpackChunkName: "auth-signin" */ '@/modules/auth/pages/signin/SigninPage.vue')
       },
       {
         path: 'signup',
-        component: () => import('@/modules/auth/pages/signup/SignupPage.vue')
+        component: () =>
+          import(/* webpackChunkName: "auth-signup" */ '@/modules/auth/pages/signup/SignupPage.vue')
       },
       {
         path: 'forgot-password',
-        component: () => import('@/modules/auth/pages/forgot-password/ForgotPassword.vue')
+        component: () =>
+          import(
+            /* webpackChunkName: "auth-forgot-password" */ '@/modules/auth/pages/forgot-password/ForgotPassword.vue'
+          )
+      },
+      {
+        path: 'auth/verify-email/:token',
+        component: () =>
+          import(
+            /* webpackChunkName: "verify-email" */ '@/modules/auth/pages/verify-email/VerifyEmail.vue'
+          )
       }
     ]
   },

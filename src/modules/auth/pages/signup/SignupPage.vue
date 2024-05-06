@@ -4,13 +4,18 @@
       <div><base-input name="firstname" placeholder="First name" /></div>
       <div><base-input name="lastname" placeholder="Last name" /></div>
     </div>
-    <base-input name="email" placeholder="Enter email id" />
-    <base-input name="password" type="password" placeholder="Password" />
+    <base-input type="email" name="email" placeholder="Enter email id" />
+    <base-input type="password" name="password" placeholder="Password" />
     <base-input name="mobile" placeholder="Mobile no" />
 
-    <base-button class="bg-slate-900 px-6 py-2 rounded-md text-white w-full" type="submit">{{
-      AppContent.signup
-    }}</base-button>
+    <base-button
+      :disabled="loading"
+      :loading="loading"
+      class="bg-slate-900 px-6 py-2 rounded-md text-white w-full"
+      type="submit"
+    >
+      {{ AppContent.signup }}
+    </base-button>
   </auth-form>
 </template>
 
@@ -21,6 +26,11 @@ import AuthForm from '../../widgets/AuthForm.vue'
 import { useForm } from 'vee-validate'
 import { object, string } from 'yup'
 import { AppContent } from '@/utils/content'
+import { useAuthStore, type RegisterRequest } from '../../store/auth'
+import { storeToRefs } from 'pinia'
+
+const authStore = useAuthStore()
+const { loading } = storeToRefs(authStore)
 
 const validation = object({
   firstname: string().required('First name is required'),
@@ -34,13 +44,8 @@ const { handleReset, handleSubmit, meta } = useForm({
   validationSchema: validation
 })
 
-const onFormReset = () => {
-  handleReset()
-}
-
 const onSubmit = handleSubmit((values) => {
-  alert(JSON.stringify(values, null, 2))
-
+  authStore.register(values as RegisterRequest)
   handleReset()
 })
 </script>
