@@ -48,6 +48,7 @@ import { useRoute } from 'vue-router'
 import { object, string } from 'yup'
 import { onMounted } from 'vue'
 import { toast } from 'vue3-toastify'
+import { useAuthStore } from '../../store/auth'
 
 const route = useRoute()
 const verify = route.query?.verify
@@ -56,6 +57,8 @@ const message = route.query?.message
 defineProps<{
   token: string
 }>()
+
+const authStore = useAuthStore()
 
 // onMounted(() => {
 //   toast.error(message)
@@ -72,6 +75,7 @@ const { values, handleSubmit } = useForm({
 
 const onSubmit = handleSubmit((value) => {
   console.log(values)
+  // authStore.forgotPassword(values as { email: string })
 })
 </script>
 

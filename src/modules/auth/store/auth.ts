@@ -91,10 +91,10 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
-  async function forgotPassword(email: string) {
+  async function forgotPassword(requestBody: { email: string }) {
     try {
       loading.value = true
-      const response = await Api.post('/auth/forgot-password', { email })
+      const response = await Api.post('/auth/forgot-password', requestBody)
 
       return response.data
     } catch (error) {

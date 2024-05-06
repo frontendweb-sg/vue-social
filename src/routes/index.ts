@@ -26,11 +26,19 @@ const routes: RouteRecordRaw[] = [
           )
       },
       {
+        path: 'reset-password/:token?',
+        props: true,
+        component: () =>
+          import(
+            /* webpackChunkName: "auth-reset-password" */ '@/modules/auth/pages/reset-password/ResetPassword.vue'
+          )
+      },
+      {
         path: 'auth/verify-email/:token?',
         props: true,
         component: () =>
           import(
-            /* webpackChunkName: "verify-email" */ '@/modules/auth/pages/verify-email/VerifyEmail.vue'
+            /* webpackChunkName: "auth-verify-email" */ '@/modules/auth/pages/verify-email/VerifyEmail.vue'
           )
       }
     ]
