@@ -26,7 +26,7 @@ const routes: RouteRecordRaw[] = [
           )
       },
       {
-        path: 'auth/verify-email/:token',
+        path: 'auth/verify-email/:token?',
         props: true,
         component: () =>
           import(

@@ -1,7 +1,13 @@
 <template>
-  <div class="px-6 py-12 shadow-md min-h-96 max-w-[360px] min-w-[360px] bg-white rounded-md">
-    <form v-bind="$attrs" class="space-y-4">
-      <div class="mb-10">
+  <div
+    :class="[
+      'px-6 py-16 shadow-md flex items-center justify-center min-h-96 max-w-[360px] min-w-[360px] flex-col bg-white rounded-md',
+      $attrs.class
+    ]"
+  >
+    <slot name="header" />
+    <form v-bind="$attrs" class="space-y-4 w-full">
+      <div class="mb-6">
         <h2 class="text-[24px] font-medium">{{ title }}</h2>
         <p class="text-xs text-slate-400">
           {{ subtitle }}
@@ -33,7 +39,7 @@ const props = withDefaults(
     title: AppContent.signup,
     subtitle: AppContent.signupSubtitle,
     linkText: AppContent.signin,
-    to: '/auth'
+    to: '/'
   }
 )
 </script>
