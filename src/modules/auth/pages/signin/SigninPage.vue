@@ -14,12 +14,19 @@
         <input type="checkbox" /> <span>{{ AppContent.rememberMe }}</span>
       </label>
       <router-link class="text-rose-600 flex items-center font-medium" to="/forgot-password">
-        <KeyRound :size="14" class="mr-2" /> Forgot Password</router-link
-      >
+        <KeyRound :size="14" class="mr-2" />
+        {{ AppContent.forgotPassword }}
+      </router-link>
     </div>
-    <base-button class="bg-slate-900 px-6 py-2 rounded-md text-white w-full" type="submit">{{
-      AppContent.signin
-    }}</base-button>
+    <base-button
+      :is-full="true"
+      :disabled="loading"
+      :loading="loading"
+      class="px-6 py-2 rounded-md"
+      type="submit"
+    >
+      {{ AppContent.signin }}
+    </base-button>
   </auth-form>
 </template> 
   
@@ -52,9 +59,6 @@ const onSubmit = handleSubmit((values) => {
   handleReset()
 })
 
-authStore.$subscribe((mutation, state) => {
-  console.log('mutation', mutation)
-  console.log('state', state)
-})
+authStore.$subscribe((mutation, state) => {})
 </script>
   
