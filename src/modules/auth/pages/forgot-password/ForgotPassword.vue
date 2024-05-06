@@ -7,9 +7,9 @@
     @submit="onSubmit"
   >
     <base-input name="email" placeholder="Enter email id" />
-    <base-button class="bg-slate-900 px-6 py-2 rounded-md text-white w-full" type="submit">{{
-      AppContent.send
-    }}</base-button>
+    <base-button class="bg-slate-900 px-6 py-2 rounded-md text-white w-full" type="submit">
+      {{ AppContent.send }}
+    </base-button>
   </auth-form>
 </template>
 

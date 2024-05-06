@@ -91,6 +91,19 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function forgotPassword(email: string) {
+    try {
+      loading.value = true
+      const response = await Api.post('/auth/forgot-password', { email })
+
+      return response.data
+    } catch (error) {
+      raiseToast(error as Error)
+    } finally {
+      loading.value = false
+    }
+  }
+
   function $reset() {
     loading.value = false
     user.value = null
@@ -117,6 +130,7 @@ export const useAuthStore = defineStore('auth', () => {
     checkUserIsLoggedIn,
     login,
     register,
+    forgotPassword,
     $reset
   }
 
