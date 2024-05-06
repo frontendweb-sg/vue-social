@@ -1,12 +1,5 @@
 <template>
-  <auth-form
-    to="/"
-    :title="AppContent.passwordResetRequest"
-    :link-text="AppContent.signin"
-    :subtitle="AppContent.authForgetText"
-    @submit="onSubmit"
-    class="relative"
-  >
+  <auth-form @submit="onSubmit" class="relative">
     <template v-if="message" #header>
       <div
         class="bg-green-100 text-black px-2 py-4 rounded-md flex items-center absolute top-5 left-5 right-5 text-sm"
@@ -28,11 +21,11 @@
 
 
 <script lang="ts" setup>
-import { useForm } from 'vee-validate'
-import { object, string } from 'yup'
 import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import AuthForm from '../../widgets/AuthForm.vue'
+import { useForm } from 'vee-validate'
+import { object, string } from 'yup'
 import { AppContent } from '@/utils/content'
 import { CheckIcon } from 'lucide-vue-next'
 import { useAuthStore } from '../../store/auth'
@@ -45,12 +38,16 @@ const validation = object({
   email: string().email().required('Email is required!')
 })
 
-const { handleReset, handleSubmit, meta } = useForm({
+const { handleReset, handleSubmit } = useForm({
+  initialValues: {
+    email: ''
+  },
   validationSchema: validation
 })
 
 const onSubmit = handleSubmit(async (values) => {
   message.value = true
+
   await authStore.forgotPassword(values as { email: string })
   message.value = false
   handleReset()

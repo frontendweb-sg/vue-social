@@ -5,6 +5,7 @@ export const AppContent = {
   signin: 'Sign in',
   signup: 'Sign up',
   request: 'Request',
+  resetPasword: 'Reset password',
   passwordResetRequest: 'Password reset request',
   forgotPassword: 'Forgot Password',
   rememberMe: 'Remember me',

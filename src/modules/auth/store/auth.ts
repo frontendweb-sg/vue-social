@@ -104,6 +104,24 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function resetPassword(requestBody: { password: string }) {
+    try {
+      loading.value = true
+      const response = await Api.post('/auth/reset-password', requestBody)
+      toast.success('Password updated successfully!')
+
+      setTimeout(() => {
+        router.replace('/')
+      }, 3000)
+
+      return response.data
+    } catch (error) {
+      raiseToast(error as Error)
+    } finally {
+      loading.value = false
+    }
+  }
+
   function $reset() {
     loading.value = false
     user.value = null
@@ -131,6 +149,7 @@ export const useAuthStore = defineStore('auth', () => {
     login,
     register,
     forgotPassword,
+    resetPassword,
     $reset
   }
 

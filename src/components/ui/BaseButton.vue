@@ -15,7 +15,7 @@ const props = withDefaults(
     color?: Color
     size?: Size
     loading?: boolean
-    isFull: boolean
+    isFull?: boolean
   }>(),
   {
     isFull: false,
