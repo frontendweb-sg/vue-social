@@ -76,12 +76,14 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       loading.value = true
 
-      await Api.post('/auth/signup', requestBody)
+      const response = await Api.post('/auth/signup', requestBody)
       toast.success('Account created successfully!, please login')
 
       setTimeout(() => {
         router.replace('/')
       }, 3000)
+
+      return response.data
     } catch (error) {
       raiseToast(error as Error)
     } finally {

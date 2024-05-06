@@ -27,6 +27,7 @@ const routes: RouteRecordRaw[] = [
       },
       {
         path: 'auth/verify-email/:token',
+        props: true,
         component: () =>
           import(
             /* webpackChunkName: "verify-email" */ '@/modules/auth/pages/verify-email/VerifyEmail.vue'
