@@ -1,4 +1,5 @@
 import { useAuthStore } from '@/modules/auth/store/auth'
+import { useLoaderStore } from '@/store/loader'
 import { type RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 
 // Routes
@@ -87,4 +88,17 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+router.beforeResolve((to, from, next) => {
+  const useLoader = useLoaderStore()
+
+  if (to.path) {
+    useLoader.loadingStart()
+  }
+  next()
+})
+
+router.afterEach(() => {
+  const useLoader = useLoaderStore()
+  useLoader.loadingEnd()
+})
 export default router
