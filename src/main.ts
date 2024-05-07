@@ -1,7 +1,11 @@
-import { createApp } from 'vue'
+import { createApp, markRaw } from 'vue'
 import App from './App.vue'
-import { createPinia } from 'pinia'
 
+import router from './routes'
+import { pinia } from './pinia'
+import { GlobalComponents } from './plugins/components'
+
+import 'vue3-toastify/dist/index.css'
 import './assets/main.css'
 
 const app = createApp(App)
@@ -12,11 +16,14 @@ const app = createApp(App)
 
 // global provider
 
+// plugins
+app.use(GlobalComponents, {})
+
 // pinia
-const pinia = createPinia()
 app.use(pinia)
 
 // routes
+app.use(router)
 
 // app configuration
 
