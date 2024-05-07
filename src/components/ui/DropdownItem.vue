@@ -16,20 +16,21 @@
 </template>
 
 <script setup lang="ts">
-import { icons } from 'lucide-vue-next'
+// import { icons } from 'lucide-vue-next'
+import type { LucideIcon } from 'lucide-vue-next'
 import { computed } from 'vue'
 import { type RouteLocationRaw } from 'vue-router'
 
 interface Props {
   to?: RouteLocationRaw
-  icon?: string
+  icon?: string | LucideIcon
 }
 
 const props = withDefaults(defineProps<Props>(), {
   to: '/'
 })
 
-const Icon = computed(() => icons[props.icon as keyof typeof icons])
+const Icon = computed(() => props.icon)
 </script>
 
 <style>

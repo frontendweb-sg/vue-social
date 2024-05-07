@@ -20,9 +20,5 @@
 
 <script setup lang="ts">
 import { BellIcon, Newspaper } from 'lucide-vue-next'
-
 import NavbarUser from '../common/NavbarUser.vue'
-import BaseDropdown from '../ui/BaseDropdown.vue'
-import DropdownItem from '../ui/DropdownItem.vue'
-import { AppContent } from '@/utils/content'
 </script>

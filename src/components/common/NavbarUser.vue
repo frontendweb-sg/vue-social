@@ -6,21 +6,22 @@
         <span class="ml-2 font-lato font-bold text-rose-700" v-if="shortName">{{ shortName }}</span>
       </div>
     </template>
-    <dropdown-item icon="User" :to="path + AppRoute.profile"
+    <dropdown-item :icon="User" :to="path + AppRoute.profile"
       >{{ AppContent.profile }}
     </dropdown-item>
-    <dropdown-item icon="Key" :to="path + AppRoute.profile">{{
+    <dropdown-item :icon="Key" :to="path + AppRoute.profile">{{
       AppContent.changePassword
     }}</dropdown-item>
-    <dropdown-item icon="Settings" :to="path + AppRoute.settings">
+    <dropdown-item :icon="Settings" :to="path + AppRoute.settings">
       {{ AppContent.settings }}
     </dropdown-item>
     <base-divider />
-    <dropdown-item @click="logout" icon="LogOut">{{ AppContent.logout }}</dropdown-item>
+    <dropdown-item @click="logout" :icon="LogOut">{{ AppContent.logout }}</dropdown-item>
   </base-dropdown>
 </template>
 
 <script lang="ts" setup>
+import { User, Key, Settings, LogOut } from 'lucide-vue-next'
 import useAuth from '@/composable/useAuth'
 import BaseAvatar from '../ui/BaseAvatar.vue'
 import BaseDropdown from '../ui/BaseDropdown.vue'
