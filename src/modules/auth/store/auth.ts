@@ -122,6 +122,19 @@ export const useAuthStore = defineStore('auth', () => {
     }
   }
 
+  async function sendVerificationMail(requestBody: { email: string }) {
+    try {
+      loading.value = true
+      const response = await Api.post('/auth/email-verification', requestBody)
+      toast.success('Mail sent!, Please check your mail!')
+      return response.data
+    } catch (error) {
+      raiseToast(error as Error)
+    } finally {
+      loading.value = false
+    }
+  }
+
   function $reset() {
     loading.value = false
     user.value = null
@@ -150,6 +163,7 @@ export const useAuthStore = defineStore('auth', () => {
     register,
     forgotPassword,
     resetPassword,
+    sendVerificationMail,
     $reset
   }
 
