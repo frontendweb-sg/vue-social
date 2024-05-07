@@ -38,16 +38,12 @@
 </template>
 
 <script setup lang="ts">
-import BaseButton from '@/components/ui/BaseButton.vue'
-import BaseInput from '@/components/ui/BaseInput.vue'
 import BaseForm from '../../widgets/AuthForm.vue'
 import { AppContent } from '@/utils/content'
 import { CheckIcon, MailOpen } from 'lucide-vue-next'
 import { useForm } from 'vee-validate'
 import { useRoute } from 'vue-router'
 import { object, string } from 'yup'
-import { onMounted } from 'vue'
-import { toast } from 'vue3-toastify'
 import { useAuthStore } from '../../store/auth'
 
 const route = useRoute()
@@ -60,10 +56,6 @@ defineProps<{
 
 const authStore = useAuthStore()
 
-// onMounted(() => {
-//   toast.error(message)
-// })
-
 const { values, handleSubmit } = useForm({
   initialValues: {
     email: ''
@@ -75,7 +67,6 @@ const { values, handleSubmit } = useForm({
 
 const onSubmit = handleSubmit((value) => {
   console.log(values)
-  // authStore.forgotPassword(values as { email: string })
 })
 </script>
 

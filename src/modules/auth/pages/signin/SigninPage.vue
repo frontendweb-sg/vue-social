@@ -31,8 +31,6 @@
 </template> 
   
 <script setup lang="ts">
-import BaseInput from '@/components/ui/BaseInput.vue'
-import BaseButton from '@/components/ui/BaseButton.vue'
 import AuthForm from '../../widgets/AuthForm.vue'
 import { AppContent } from '@/utils/content'
 import { useAuthStore, type LoginRequest } from '../../store/auth'

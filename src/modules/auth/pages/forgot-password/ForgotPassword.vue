@@ -21,8 +21,6 @@
 
 
 <script lang="ts" setup>
-import BaseInput from '@/components/ui/BaseInput.vue'
-import BaseButton from '@/components/ui/BaseButton.vue'
 import AuthForm from '../../widgets/AuthForm.vue'
 import { useForm } from 'vee-validate'
 import { object, string } from 'yup'

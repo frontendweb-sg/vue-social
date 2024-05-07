@@ -3,6 +3,7 @@ import App from './App.vue'
 
 import router from './routes'
 import { pinia } from './pinia'
+import { GlobalComponents } from './plugins/components'
 
 import 'vue3-toastify/dist/index.css'
 import './assets/main.css'
@@ -14,6 +15,9 @@ const app = createApp(App)
 // global directives
 
 // global provider
+
+// plugins
+app.use(GlobalComponents, {})
 
 // pinia
 app.use(pinia)
