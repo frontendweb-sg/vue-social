@@ -31,7 +31,8 @@ export interface Media {
 }
 export interface IUser {
   id?: string
-  name: string
+  firstname: string
+  lastname: string
   email: string
   password: string
   mobile: string

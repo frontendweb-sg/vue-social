@@ -1,4 +1,5 @@
 import { useAuthStore } from '@/modules/auth/store/auth'
+import { useLoaderStore } from '@/store/loader'
 import { type RouteRecordRaw, createRouter, createWebHistory } from 'vue-router'
 
 // Routes
@@ -46,13 +47,54 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/user',
     component: () => import(/* webpackChunkName: "user" */ '@/modules/user/index.vue'),
-    meta: {
-      requireAuth: true
-    },
+    meta: { requireAuth: true },
     children: [
       {
+        path: '',
+        component: () =>
+          import(/* webpackChunkName: "user-dash" */ '@/modules/user/pages/dashboard/Dashboard.vue')
+      },
+      {
+        path: 'posts',
+        component: () =>
+          import(/* webpackChunkName: "user-posts" */ '@/modules/user/pages/posts/Posts.vue')
+      },
+      {
+        path: 'photos',
+        component: () =>
+          import(/* webpackChunkName: "user-photos" */ '@/modules/user/pages/photos/Photos.vue')
+      },
+      {
+        path: 'videos',
+        component: () =>
+          import(/* webpackChunkName: "user-videos" */ '@/modules/user/pages/videos/Videos.vue')
+      },
+      {
+        path: 'friend',
+        component: () =>
+          import(/* webpackChunkName: "user-friend" */ '@/modules/user/pages/friends/Friends.vue')
+      },
+      {
+        path: 'group',
+        component: () =>
+          import(/* webpackChunkName: "user-group" */ '@/modules/user/pages/groups/Groups.vue')
+      },
+      {
+        path: 'media',
+        component: () =>
+          import(/* webpackChunkName: "user-media" */ '@/modules/user/pages/media/Media.vue')
+      },
+      {
+        path: 'settings',
+        component: () =>
+          import(
+            /* webpackChunkName: "user-settings" */ '@/modules/user/pages/settings/Setting.vue'
+          )
+      },
+      {
         path: 'profile',
-        component: () => import(/* */ '@/modules/user/pages/profile/Profile.vue')
+        component: () =>
+          import(/* webpackChunkName: "user-profile" */ '@/modules/user/pages/profile/Profile.vue')
       }
     ]
   },
@@ -65,6 +107,7 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({
   routes,
   history: createWebHistory(import.meta.env.BASE_URL),
+  strict: true,
   scrollBehavior(to, from, scrollBehavior) {
     if (scrollBehavior) {
       return scrollBehavior
@@ -87,4 +130,17 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+router.beforeResolve((to, from, next) => {
+  const useLoader = useLoaderStore()
+
+  if (to.path) {
+    useLoader.loadingStart()
+  }
+  next()
+})
+
+router.afterEach(() => {
+  const useLoader = useLoaderStore()
+  useLoader.loadingEnd()
+})
 export default router

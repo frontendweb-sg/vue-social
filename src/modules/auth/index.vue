@@ -45,7 +45,6 @@
 
 <script setup lang="ts">
 import AppLogo from '../../components/layout/AppLogo.vue'
-import BaseContainer from '../../components/ui/BaseContainer.vue'
 import { AppContent } from '../../utils/content'
 import { Heart, Newspaper, Users } from 'lucide-vue-next'
 import { useAuthStore } from './store/auth'

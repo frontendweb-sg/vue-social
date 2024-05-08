@@ -1,4 +1,5 @@
 <template>
+  <base-loader v-if="useLoader.visible" />
   <router-view v-slot="{ Component }">
     <transition name="fade">
       <component :is="Component" />
@@ -7,11 +8,15 @@
 </template>
 
 <script setup lang="ts">
+import BaseLoader from './components/ui/BaseLoader.vue'
 import { onMounted } from 'vue'
 import { useAuthStore } from './modules/auth/store/auth'
+import { useLoaderStore } from './store/loader'
 
 const authStore = useAuthStore()
 const accessToken = localStorage.accessToken
+
+const useLoader = useLoaderStore()
 
 onMounted(() => {
   if (accessToken) {

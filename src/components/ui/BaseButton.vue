@@ -1,6 +1,10 @@
 <template>
   <button
-    :class="['px-6 py-1 rounded-md flex items-center justify-center', variant, isFull && 'w-full']"
+    :class="[
+      'px-6 py-2 rounded-sm flex items-center text-sm font-lato justify-center',
+      variant,
+      isFull && 'w-full'
+    ]"
   >
     <LoaderIcon class="mr-2 animate-spin" v-if="loading" /> <slot></slot>
   </button>
@@ -31,7 +35,8 @@ const variant = computed(() => ({
   'bg-gray-600 text-white': props.color === 'gray',
   'bg-blue-500 text-white': props.color === 'info',
   'bg-yellow-500 text-white': props.color === 'warning',
-  'bg-red-900 text-white': props.color === 'danger'
+  'bg-red-900 text-white': props.color === 'danger',
+  'bg-white text-black': props.color === 'default'
 }))
 </script>
 
