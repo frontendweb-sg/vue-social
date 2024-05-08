@@ -7,7 +7,7 @@
     </slot>
     <div
       :class="[
-        'absolute bg-white right-0 p-2 border border-gray-100 shadow-md min-w-52 text-sm font-lato rounded-sm'
+        'absolute bg-white right-0 p-2 border border-gray-100 shadow-md min-w-52 text-sm font-lato rounded-sm top-full'
       ]"
       v-if="open"
     >

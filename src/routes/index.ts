@@ -47,13 +47,39 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/user',
     component: () => import(/* webpackChunkName: "user" */ '@/modules/user/index.vue'),
-    meta: {
-      requireAuth: true
-    },
+    meta: { requireAuth: true },
     children: [
       {
+        path: '',
+        component: () =>
+          import(/* webpackChunkName: "user-dash" */ '@/modules/user/pages/dashboard/Dashboard.vue')
+      },
+      {
+        path: 'posts',
+        component: () =>
+          import(/* webpackChunkName: "user-posts" */ '@/modules/user/pages/posts/Posts.vue')
+      },
+      {
+        path: 'photos',
+        component: () =>
+          import(/* webpackChunkName: "user-photos" */ '@/modules/user/pages/photos/Photos.vue')
+      },
+      {
+        path: 'videos',
+        component: () =>
+          import(/* webpackChunkName: "user-dash" */ '@/modules/user/pages/videos/Videos.vue')
+      },
+      {
+        path: 'settings',
+        component: () =>
+          import(
+            /* webpackChunkName: "user-settings" */ '@/modules/user/pages/settings/Setting.vue'
+          )
+      },
+      {
         path: 'profile',
-        component: () => import(/* */ '@/modules/user/pages/profile/Profile.vue')
+        component: () =>
+          import(/* webpackChunkName: "user-profile" */ '@/modules/user/pages/profile/Profile.vue')
       }
     ]
   },

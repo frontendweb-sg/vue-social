@@ -10,13 +10,14 @@
       class="object-cover overflow-hidden rounded-full bg-transparent"
       v-bind="$attrs"
       :src="src"
+      :alt="alt"
     />
   </div>
 </template>
 
 <script setup lang="ts">
 import { LoaderIcon } from 'lucide-vue-next'
-const props = withDefaults(
+withDefaults(
   defineProps<{
     src?: string
     alt?: string

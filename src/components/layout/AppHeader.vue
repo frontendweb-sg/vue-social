@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white shadow-md">
+  <header class="bg-white shadow-md relative z-10">
     <base-container class="flex items-center justify-between">
       <app-logo to="/user"></app-logo>
       <app-navigation></app-navigation>

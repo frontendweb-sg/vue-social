@@ -1,28 +1,29 @@
 <template>
-  <app-header></app-header>
-  <h1>User page - {{ user }}</h1>
-  <email-alert :verify-email="!user?.emailVerify" />
-  <button @click="logout">Logout</button>
-  <router-view />
+  <div class="bg-gray-50 flex-col flex min-h-full">
+    <app-header></app-header>
+    <hero />
+    <base-container class="flex-1 w-full">
+      <main class="flex-1 my-6 mx-auto">
+        <div class="grid grid-cols-12 gap-6">
+          <div class="col-span-3"><sidebar /></div>
+          <div class="col-span-9">
+            <router-view v-slot="{ Component }">
+              <transition name="fade">
+                <component :is="Component" />
+              </transition>
+            </router-view>
+          </div>
+        </div>
+      </main>
+    </base-container>
+  </div>
 </template>
 
 <script setup lang="ts">
-import EmailAlert from '@/components/common/EmailAlert.vue'
 import AppHeader from '@/components/layout/AppHeader.vue'
-import { storeToRefs } from 'pinia'
-import { useUserStore } from './store/user'
-import { onMounted } from 'vue'
-import { useAuthStore } from '../auth/store/auth'
-
-const authStore = useAuthStore()
-const { logout } = authStore
-
-const userStore = useUserStore()
-const { user } = storeToRefs(userStore)
-
-onMounted(() => {
-  userStore.fetchLoggedInUser()
-})
+import Hero from './widgets/Hero.vue'
+import BaseContainer from '@/components/ui/BaseContainer.vue'
+import Sidebar from './widgets/Sidebar.vue'
 </script>
 
 <style>

@@ -150,7 +150,7 @@ export const useAuthStore = defineStore('auth', () => {
   const isAdmin = computed(() => user.value?.role === 'admin')
   const isUser = computed(() => user.value?.role === 'user')
   const shortName = computed(() => user.value?.firstname[0]! + user.value?.lastname[0]!)
-  console.log(user, 'user')
+
   const fullName = computed(() => `${user.value?.firstname!} ${user.value?.lastname}`)
   return {
     shortName,
