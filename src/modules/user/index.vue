@@ -2,6 +2,7 @@
   <div class="bg-gray-50 flex-col flex min-h-full">
     <app-header></app-header>
     <hero />
+    <user-nav-menu />
     <base-container class="flex-1 w-full">
       <main class="flex-1 my-6 mx-auto">
         <div class="grid grid-cols-12 gap-6">
@@ -23,6 +24,7 @@
 import AppHeader from '@/components/layout/AppHeader.vue'
 import Hero from './widgets/Hero.vue'
 import BaseContainer from '@/components/ui/BaseContainer.vue'
+import UserNavMenu from './widgets/UserNavMenu.vue'
 import Sidebar from './widgets/Sidebar.vue'
 </script>
 

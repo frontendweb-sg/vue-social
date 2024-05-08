@@ -67,7 +67,22 @@ const routes: RouteRecordRaw[] = [
       {
         path: 'videos',
         component: () =>
-          import(/* webpackChunkName: "user-dash" */ '@/modules/user/pages/videos/Videos.vue')
+          import(/* webpackChunkName: "user-videos" */ '@/modules/user/pages/videos/Videos.vue')
+      },
+      {
+        path: 'friend',
+        component: () =>
+          import(/* webpackChunkName: "user-friend" */ '@/modules/user/pages/friends/Friends.vue')
+      },
+      {
+        path: 'group',
+        component: () =>
+          import(/* webpackChunkName: "user-group" */ '@/modules/user/pages/groups/Groups.vue')
+      },
+      {
+        path: 'media',
+        component: () =>
+          import(/* webpackChunkName: "user-media" */ '@/modules/user/pages/media/Media.vue')
       },
       {
         path: 'settings',
@@ -92,6 +107,7 @@ const routes: RouteRecordRaw[] = [
 const router = createRouter({
   routes,
   history: createWebHistory(import.meta.env.BASE_URL),
+  strict: true,
   scrollBehavior(to, from, scrollBehavior) {
     if (scrollBehavior) {
       return scrollBehavior
