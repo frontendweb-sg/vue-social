@@ -1,9 +1,10 @@
 <template>
   <base-form-group
     :label="label"
-    :valid="meta.touched && !meta.valid"
-    :invalid="meta.touched && meta.valid"
+    :invalid="meta.touched && !meta.valid"
+    :valid="meta.touched && meta.valid"
     :class="[$attrs.class]"
+    :errorMessage="errorMessage"
   >
     <select
       class="text-sm font-semibold bg-transparent w-full p-3 outline-none"

@@ -1,16 +1,17 @@
 <template>
   <base-form-group
     :label="label"
-    :valid="meta.touched && !meta.valid"
-    :invalid="meta.touched && meta.valid"
+    :invalid="meta.touched && !meta.valid"
+    :valid="meta.touched && meta.valid"
     :class="[$attrs.class]"
+    :errorMessage="errorMessage"
   >
     <input
       v-on="handlers"
       v-bind="$attrs"
       :value="value"
       :type="type"
-      class="text-sm font-semibold bg-transparent w-full p-3 outline-none"
+      class="text-sm font-lato bg-transparent w-full p-3 outline-none placeholder:font-normal"
     />
   </base-form-group>
 </template>

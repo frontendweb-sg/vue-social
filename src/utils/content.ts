@@ -6,6 +6,8 @@ export const AppContent = {
   signup: 'Sign up',
   save: 'Save',
   request: 'Request',
+  words: 'Words :',
+  length: 'Length :',
   resetPasword: 'Reset password',
   passwordResetRequest: 'Password reset request',
   forgotPassword: 'Forgot Password',

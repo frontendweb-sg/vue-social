@@ -1,9 +1,10 @@
 <template>
   <base-form-group
     :label="label"
-    :valid="meta.touched && !meta.valid"
-    :invalid="meta.touched && meta.valid"
+    :invalid="meta.touched && !meta.valid"
+    :valid="meta.touched && meta.valid"
     :class="[$attrs.class]"
+    :errorMessage="errorMessage"
   >
     <textarea
       cols="5"
@@ -12,16 +13,19 @@
       v-bind="$attrs"
       :value="value"
       class="text-sm font-semibold bg-transparent w-full p-3 outline-none"
-    >
-    </textarea>
+    ></textarea>
     <span class="absolute bottom-0 left-0 px-4 text-xs py-2 text-slate-600">
-      Words: {{ String(value).split(' ').length }}Total Char: {{ String(value).length }}
+      {{ AppContent.words }}
+      {{ String(value).split(' ').length }}
+      - {{ AppContent.length }}
+      {{ String(value).length }}
     </span>
   </base-form-group>
 </template>
 
 <script lang="ts" setup>
 import { useField } from 'vee-validate'
+import { AppContent } from '@/utils/content'
 
 defineOptions({ inheritAttrs: false })
 

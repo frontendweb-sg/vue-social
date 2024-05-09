@@ -7,11 +7,11 @@
       <base-input name="designation" placeholder="Designation" label="Designation" />
       <base-input name="website" placeholder="Website" label="Website" />
       <base-input name="address" placeholder="Address" label="Address" />
-      <base-input name="qualification" placeholder="qualification" label="Website" />
-      <base-input name="gitusername" placeholder="gitusername" label="Website" />
-      <base-input name="totalExp" placeholder="totalExp" label="Website" />
-      <base-input name="noticeperiod" placeholder="noticeperiod" label="Website" />
-      <base-input name="salary" placeholder="salary" label="Website" />
+      <base-input name="qualification" placeholder="Qualification" label="Qualification" />
+      <base-input name="gitusername" placeholder="Github username" label="Github name" />
+      <base-input name="totalExp" placeholder="totalExp" label="Total Experience" />
+      <base-input name="noticeperiod" placeholder="noticeperiod" label="Notice period" />
+      <base-input name="salary" placeholder="salary" label="Salary" />
       <base-textarea name="summary" placeholder="Summary" class="col-span-3" />
     </div>
     <div class="flex justify-end space-x-4">
@@ -25,7 +25,11 @@
 import { useForm } from 'vee-validate'
 import { GenderOptions } from '@/utils/constants'
 import { AppContent } from '@/utils/content'
+import { object, string } from 'yup'
 const { handleReset, handleSubmit } = useForm({
+  validationSchema: object().shape({
+    company: string().required()
+  }),
   initialValues: {
     gender: 'male',
     dob: ''

@@ -16,7 +16,7 @@ import { defineProps } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 import { Waypoints } from 'lucide-vue-next'
 
-const props = withDefaults(
+withDefaults(
   defineProps<{
     type?: 'black' | 'white'
     to: RouteLocationRaw
