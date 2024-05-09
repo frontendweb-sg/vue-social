@@ -1,37 +1,17 @@
 <template>
   <form @submit="onSubmit">
     <div class="grid grid-cols-3 gap-4">
-      <div>
-        <base-select name="gender" label="Gender" :options="GenderOptions" />
-      </div>
-      <div>
-        <base-input name="company" placeholder="Company name" label="Company name" />
-      </div>
-      <div>
-        <base-input name="designation" placeholder="Designation" label="Designation" />
-      </div>
-      <div>
-        <base-input name="website" placeholder="Website" label="Website" />
-      </div>
-      <div>
-        <base-input name="address" placeholder="Address" label="Address" />
-      </div>
-      <div>
-        <base-input name="qualification" placeholder="qualification" label="Website" />
-      </div>
-      <div>
-        <base-input name="gitusername" placeholder="gitusername" label="Website" />
-      </div>
-      <div>
-        <base-input name="totalExp" placeholder="totalExp" label="Website" />
-      </div>
-      <div>
-        <base-input name="noticeperiod" placeholder="noticeperiod" label="Website" />
-      </div>
-      <div>
-        <base-input name="salary" placeholder="salary" label="Website" />
-      </div>
-
+      <base-input type="datetime-local" name="dob" label="Date of birth" />
+      <base-select name="gender" label="Gender" :options="GenderOptions" />
+      <base-input name="company" placeholder="Company name" label="Company name" />
+      <base-input name="designation" placeholder="Designation" label="Designation" />
+      <base-input name="website" placeholder="Website" label="Website" />
+      <base-input name="address" placeholder="Address" label="Address" />
+      <base-input name="qualification" placeholder="qualification" label="Website" />
+      <base-input name="gitusername" placeholder="gitusername" label="Website" />
+      <base-input name="totalExp" placeholder="totalExp" label="Website" />
+      <base-input name="noticeperiod" placeholder="noticeperiod" label="Website" />
+      <base-input name="salary" placeholder="salary" label="Website" />
       <base-textarea name="summary" placeholder="Summary" class="col-span-3" />
     </div>
     <div class="flex justify-end space-x-4">
@@ -47,7 +27,8 @@ import { GenderOptions } from '@/utils/constants'
 import { AppContent } from '@/utils/content'
 const { handleReset, handleSubmit } = useForm({
   initialValues: {
-    gender: 'male'
+    gender: 'male',
+    dob: ''
   }
 })
 

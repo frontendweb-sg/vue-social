@@ -8,6 +8,7 @@
 import { format } from 'date-fns'
 withDefaults(
   defineProps<{
+    label?: string
     date: string
     formatString?: string
   }>(),

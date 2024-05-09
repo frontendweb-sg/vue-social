@@ -1,32 +1,21 @@
 <template>
-  <div :class="[$attrs.class]">
-    <label v-if="props.label" class="block text-slate-600 text-sm font-medium mb-2">
-      {{ label }}
-    </label>
-    <div
-      :class="[
-        ' ring-slate-800 hover:bg-gray-50 border border-gray-100 rounded-md',
-        meta.touched && !meta.valid && 'border-red-600 placeholder:text-red-600 text-red-600',
-        meta.touched && meta.valid && 'border-green-600 placeholder:text-green-600 text-green-600',
-        $attrs.class
-      ]"
+  <base-form-group
+    :label="label"
+    :valid="meta.touched && !meta.valid"
+    :invalid="meta.touched && meta.valid"
+    :class="[$attrs.class]"
+  >
+    <select
+      class="text-sm font-semibold bg-transparent w-full p-3 outline-none"
+      v-bind="$attrs"
+      v-on="handlers"
+      :value="value"
     >
-      <select
-        class="text-sm font-semibold bg-transparent w-full p-3 outline-none"
-        v-bind="$attrs"
-        v-on="handlers"
-        :value="value"
-      >
-        <option
-          v-for="option in options"
-          :key="JSON.stringify(option)"
-          :value="defaultValue(option)"
-        >
-          {{ optionLabel(option) }}
-        </option>
-      </select>
-    </div>
-  </div>
+      <option v-for="option in options" :key="JSON.stringify(option)" :value="defaultValue(option)">
+        {{ optionLabel(option) }}
+      </option>
+    </select>
+  </base-form-group>
 </template>
 
 <script  setup lang="ts" generic="T">

@@ -6,6 +6,7 @@ import { pinia } from './pinia'
 import { GlobalComponents } from './plugins/components'
 
 import 'vue3-toastify/dist/index.css'
+// import '@vuepic/vue-datepicker/dist/main.css'
 import './assets/main.css'
 
 const app = createApp(App)

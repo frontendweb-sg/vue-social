@@ -3,7 +3,6 @@
     :label="label"
     :valid="meta.touched && !meta.valid"
     :invalid="meta.touched && meta.valid"
-    :class="[$attrs.class]"
   >
     <input
       v-on="handlers"
@@ -17,20 +16,20 @@
 
 <script setup lang="ts">
 import { useField } from 'vee-validate'
-import type { InputTypeHTMLAttribute } from 'vue'
 
 defineOptions({ inheritAttrs: false })
 
+type DateType = 'time' | 'weak' | 'month' | 'date' | 'datetime' | 'datetime-local'
 const props = withDefaults(
   defineProps<{
     name: string
     label?: string
-    type?: InputTypeHTMLAttribute
-    isPassowrd?: boolean
+    formatString?: string
+    type?: DateType
   }>(),
   {
-    type: 'text',
-    isPassowrd: false
+    type: 'datetime-local',
+    formatString: 'MM/dd/yyyy'
   }
 )
 
