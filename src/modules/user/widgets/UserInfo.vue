@@ -16,7 +16,7 @@
       </li>
       <li class="flex justify-between items-center">
         <span>Joined Us:</span>
-        <span>{{ format(String(user?.createdAt), 'MM/dd/yyyy') }}</span>
+        <base-date :date="user?.createdAt" />
       </li>
     </ul>
   </base-card>
@@ -26,6 +26,4 @@
 import useAuth from '@/composable/useAuth'
 import { format } from 'date-fns'
 const { loading, user, fullName } = useAuth()
-
-console.log('user', user)
 </script>

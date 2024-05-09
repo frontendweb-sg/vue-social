@@ -45,3 +45,85 @@ export interface IUser {
   createdAt?: string
   updatedAt: string
 }
+
+export interface Language {
+  code: string
+  name: string
+  options: {
+    read: boolean
+    write: boolean
+    speak: boolean
+  }[]
+}
+export interface Social {
+  youtube: string
+  twitter: string
+  facebook: string
+  linkedin: string
+  instagram: string
+}
+export interface Skill {
+  language: string
+  rating: number
+}
+
+export interface Project {
+  name: string // vue-social
+  role: string // developer
+  duration: string // 1 year
+  frontendIn: string // react
+  backendIn: string // nodejs
+  teamSize?: number // 5
+  database?: string // mongodb
+  cssOrFramework?: string // tailwind css
+  helperTechnologies?: [string] // [pinia, vue-router, vueuse]
+  projectUrl?: string // http://vue-social.com
+}
+export interface Employment {
+  company: string // rsystems
+  designation: string // team leader
+  skills: string[] // [html,css,scss]
+  award: string // []
+  from: Date | null // 14-dec-2018
+  to?: Date | null // null
+  location?: string // Noida
+  current?: boolean // true
+  active?: boolean // true
+  projects?: Project[]
+}
+export interface Education {
+  instituteName: string // kic
+  degree: string // BCA
+  fieldOfStudy: string
+  current?: boolean
+  activityAndSocial?: string
+  from: Date | null
+  to?: Date | null
+  location?: string
+  summary?: string
+  grade?: string
+}
+export interface Address {}
+export interface Profile {
+  user: string
+  company: string
+  designation: string
+  gender: Gender
+  dob: string
+  summary: string
+  hobbies: string[]
+  website: string
+  resume?: string
+  address: string
+  qualification: string
+  gitusername: string
+  totalExp: number
+  noticeperiod?: number
+  languages: Language[] | null
+  skills?: Skill[]
+  salary?: number
+  employment?: Employment[]
+  education?: Education[]
+  social: Social
+  active: boolean
+}

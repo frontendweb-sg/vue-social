@@ -4,3 +4,9 @@ export const PostStatus = [
   { title: 'Private', value: 'private' },
   { title: 'Public', value: 'public' }
 ]
+
+export const GenderOptions = [
+  { label: 'Male', value: 'male' },
+  { label: 'Female', value: 'female' },
+  { label: 'Unknown', value: 'unkown' }
+]

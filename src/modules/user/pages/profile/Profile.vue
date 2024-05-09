@@ -1,9 +1,11 @@
 <template>
-  <h1>User Profile</h1>
+  <div>
+    <profile-form />
+  </div>
 </template>
 
-<script>
-export default {}
+<script setup lang="ts">
+import ProfileForm from '../../widgets/ProfileForm.vue'
 </script>
 
 <style>

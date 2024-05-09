@@ -1,6 +1,6 @@
 import { Api } from '@/axios_instance'
 import type { IUser } from '@/types'
-import { defineStore } from 'pinia'
+import { defineStore, acceptHMRUpdate } from 'pinia'
 import { toast } from 'vue3-toastify'
 
 export const useUserStore = defineStore('userStore', {
@@ -21,3 +21,6 @@ export const useUserStore = defineStore('userStore', {
     }
   }
 })
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useUserStore, import.meta.hot))
+}

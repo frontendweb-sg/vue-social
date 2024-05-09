@@ -4,6 +4,7 @@ export const AppContent = {
   cancel: 'Cancel',
   signin: 'Sign in',
   signup: 'Sign up',
+  save: 'Save',
   request: 'Request',
   resetPasword: 'Reset password',
   passwordResetRequest: 'Password reset request',
