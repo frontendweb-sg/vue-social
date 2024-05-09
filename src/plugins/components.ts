@@ -5,6 +5,7 @@ import BaseCard from '@/components/ui/BaseCard.vue'
 import BaseDivider from '@/components/ui/BaseDivider.vue'
 import BaseNav from '@/components/ui/BaseNav.vue'
 import BaseContainer from '@/components/ui/BaseContainer.vue'
+import BaseListSkeleton from '@/components/ui/BaseListSkeleton.vue'
 
 export const GlobalComponents = {
   install(app: App, options: { [key: string]: string }) {
@@ -14,5 +15,6 @@ export const GlobalComponents = {
     app.component('BaseDivider', BaseDivider)
     app.component('NavItem', BaseNav)
     app.component('BaseContainer', BaseContainer)
+    app.component('BaseListSkeleton', BaseListSkeleton)
   }
 }

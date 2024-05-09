@@ -29,6 +29,7 @@ export interface Media {
   version?: string
   signature: string
 }
+
 export interface IUser {
   id?: string
   firstname: string
@@ -41,4 +42,6 @@ export interface IUser {
   active: string
   emailVerify: boolean
   accessToken: string
+  createdAt?: string
+  updatedAt: string
 }
