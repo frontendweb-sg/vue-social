@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <profile-form />
-  </div>
+  <profile-form />
 </template>
 
 <script setup lang="ts">

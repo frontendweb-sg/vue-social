@@ -14,11 +14,11 @@ import { useAuthStore } from './modules/auth/store/auth'
 import { useLoaderStore } from './store/loader'
 
 const authStore = useAuthStore()
-const accessToken = localStorage.accessToken
 
 const useLoader = useLoaderStore()
 
 onMounted(() => {
+  const accessToken = localStorage.getItem('accessToken')
   if (accessToken) {
     authStore.checkUserIsLoggedIn()
   }

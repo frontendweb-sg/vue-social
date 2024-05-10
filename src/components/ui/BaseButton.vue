@@ -1,7 +1,7 @@
 <template>
   <button
     :class="[
-      'px-6 py-2 rounded-sm flex items-center text-sm font-lato justify-center',
+      'px-6 py-2 rounded-md flex items-center text-sm font-lato justify-center',
       variant,
       isFull && 'w-full'
     ]"

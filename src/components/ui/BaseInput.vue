@@ -5,6 +5,7 @@
     :valid="meta.touched && meta.valid"
     :class="[$attrs.class]"
     :errorMessage="errorMessage"
+    :iconProps="iconProps"
   >
     <input
       v-on="handlers"
@@ -17,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import type { LucideProps } from 'lucide-vue-next'
 import { useField } from 'vee-validate'
 import type { InputTypeHTMLAttribute } from 'vue'
 
@@ -28,6 +30,7 @@ const props = withDefaults(
     label?: string
     type?: InputTypeHTMLAttribute
     isPassowrd?: boolean
+    iconProps?: LucideProps & SVGAElement
   }>(),
   {
     type: 'text',
@@ -35,7 +38,7 @@ const props = withDefaults(
   }
 )
 
-const { meta, value, errorMessage, handleBlur, handleChange } = useField(
+const { meta, value, errorMessage, handleBlur, handleChange } = useField<string>(
   props.name,
   {},
   {

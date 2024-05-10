@@ -6,7 +6,7 @@ import { toast } from 'vue3-toastify'
 
 export const useProfileStore = defineStore('profile', () => {
   const profile = ref<null | Profile>(null)
-
+  const loading = ref(false)
   // url
   // logged in user profile
   async function loggedInUserProfile() {
@@ -25,10 +25,17 @@ export const useProfileStore = defineStore('profile', () => {
     }
   }
 
-  function addProfile(requestBody: Profile) {
+  async function addProfile(requestBody: Profile) {
     try {
+      loading.value = true
+      const response = await Api.post<Profile>('/profile', requestBody)
+      if (response.status === 201) {
+        toast.success('Profile added!')
+      }
+      return response.data
     } catch (error) {
-      if (error instanceof Error) toast.error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
@@ -75,6 +82,7 @@ export const useProfileStore = defineStore('profile', () => {
   }
 
   return {
+    loading,
     profile,
     loggedInUserProfile,
     getProfileByUserId,

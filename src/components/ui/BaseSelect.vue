@@ -5,6 +5,7 @@
     :valid="meta.touched && meta.valid"
     :class="[$attrs.class]"
     :errorMessage="errorMessage"
+    :iconProps="{ class: 'right-5' }"
   >
     <select
       class="text-sm font-semibold bg-transparent w-full p-3 outline-none"
