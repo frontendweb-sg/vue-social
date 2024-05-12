@@ -4,7 +4,13 @@
     <ul>
       <li v-for="(value, key) in profile" :key="key" class="flex items-center">
         <span class="w-28">{{ key }}</span>
-        <span class="text-slate-600">{{ value }}</span>
+        <base-date v-if="key === 'dob'" :date="value" />
+        <template v-else-if="key === 'skills'">
+          <span v-for="skill in value" :key="skill">
+            {{ skill }}
+          </span>
+        </template>
+        <span v-else class="text-slate-600">{{ value }}</span>
       </li>
     </ul>
   </div>
@@ -12,11 +18,12 @@
 
 <script setup lang="ts">
 import type { Profile } from '@/types'
+import { computed } from 'vue'
 
 interface Props {
   loading: boolean
   profile: Profile | object
 }
-defineProps<Props>()
+const props = defineProps<Props>()
 </script>
-;<style></style>
+<style></style>

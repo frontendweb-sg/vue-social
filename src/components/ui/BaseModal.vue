@@ -1,5 +1,5 @@
 <template>
-  <Teleport :to="telportId">
+  <Teleport :to="telportId" v>
     <div
       @click="$emit('close')"
       class="bg-gray-900/50 dark:bg-gray-900/80 fixed inset-0 z-40"
@@ -8,7 +8,7 @@
       id="default-modal"
       tabindex="-1"
       aria-hidden="true"
-      class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full flex"
+      class="overflow-y-auto shadow-md overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full flex"
     >
       <div :class="['relative p-4 w-full max-h-full', modalSize]">
         <!-- Modal content -->
@@ -17,7 +17,9 @@
           <div
             class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
           >
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+            <h3
+              class="text-md font-semibold text-rose-700 dark:text-white relative before:h-full before:absolute before:content-[''] before:w-1 before:-left-5 before:bg-rose-500"
+            >
               {{ label }}
             </h3>
             <button
@@ -26,7 +28,7 @@
               data-modal-hide="default-modal"
               @click="$emit('close')"
             >
-              <X />
+              <X :size="20" />
             </button>
           </div>
           <!-- Modal body -->
@@ -56,22 +58,28 @@ interface Props {
   size?: Size
 }
 
-const props = withDefaults(defineProps<Props>(), { size: 'xl', label: 'Modal', telportId: 'body' })
+const props = withDefaults(defineProps<Props>(), {
+  size: 'xl',
+  label: 'Modal',
+  telportId: 'body'
+})
 defineEmits<{
   (e: 'close'): void
 }>()
 
-const modalSize = computed(() => ({
-  'max-w-xs': props.size === 'xs',
-  'max-w-sm ': props.size === 'sm',
-  'max-w-md ': props.size === 'md',
-  'max-w-lg ': props.size === 'lg',
-  'max-w-xl ': props.size === 'xl',
-  'max-w-2xl': props.size === '2xl',
-  'max-w-3xl': props.size === '3xl',
-  'max-w-4xl': props.size === '4xl',
-  'max-w-5xl': props.size === '5xl'
-}))
+const sizeClass = {
+  xs: 'max-w-xs',
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-xl',
+  '2xl': 'max-w-2xl',
+  '3xl': 'max-w-3xl',
+  '4xl': 'max-w-4xl',
+  '5xl': 'max-w-5xl'
+}
+
+const modalSize = computed(() => sizeClass[props.size as keyof typeof sizeClass])
 </script>
 
 <style>

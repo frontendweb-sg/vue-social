@@ -14,6 +14,7 @@ export const useProfileStore = defineStore('profile', () => {
     try {
       const { data } = await Api.get<Profile>('/user/profile')
       profile.value = data
+      console.log('HI', data)
     } catch (error) {
       if (error instanceof Error) toast.error(error.message)
     }

@@ -32,7 +32,7 @@ import { AppContent } from '@/utils/content'
 import { date, number, object, string } from 'yup'
 import { useProfileStore } from '../store/profile'
 import { Gender } from '@/utils/enums'
-import { onMounted, watch } from 'vue'
+import { watch } from 'vue'
 import { format } from 'date-fns'
 import { storeToRefs } from 'pinia'
 import type { Profile } from '@/types'
@@ -42,7 +42,7 @@ const emit = defineEmits<{
 }>()
 
 const profileStore = useProfileStore()
-const { profile, loading } = storeToRefs(profileStore)
+const { loading, profile } = storeToRefs(profileStore)
 
 const { handleReset, handleSubmit, setValues } = useForm<Profile>({
   validationSchema: object().shape({
@@ -94,17 +94,10 @@ const onSubmit = handleSubmit(async (values) => {
 watch(
   () => profile.value as Profile,
   (v: Profile) => {
-    if (v)
-      setValues({
-        ...v,
-        dob: format(new Date(v.dob), 'yyyy-MM-dd')
-      })
-  }
+    if (v) setValues({ ...v, dob: format(new Date(v.dob), 'yyyy-MM-dd') })
+  },
+  { immediate: true }
 )
-
-onMounted(() => {
-  profileStore.loggedInUserProfile()
-})
 </script>
 
 <style>

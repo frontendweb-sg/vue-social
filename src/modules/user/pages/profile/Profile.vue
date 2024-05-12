@@ -8,8 +8,9 @@
     </div>
     <base-divider />
     <profile-info :loading="loading" :profile="profile"></profile-info>
-    <base-modal @close="handleClose" v-if="open">
-      <profile-form @close="handleClose" />
+    <base-modal v-if="open" @close="handleClose">
+      <div v-if="loading"></div>
+      <profile-form v-else @close="handleClose" />
     </base-modal>
   </div>
 </template>
@@ -22,6 +23,7 @@ import { useProfileStore } from '../../store/profile'
 import { EditIcon, PlusIcon } from 'lucide-vue-next'
 import { useToggle } from '@/composable/useToggle'
 import type { Profile } from '@/types'
+import { watch } from 'vue'
 const { handleClose, handleOpen, open } = useToggle()
 
 const profileStore = useProfileStore()
