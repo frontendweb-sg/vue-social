@@ -5,8 +5,9 @@ import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
 
 export const useProfileStore = defineStore('profile', () => {
-  const profile = ref<null | Profile>(null)
+  const profile = ref<Profile | object>({})
   const loading = ref(false)
+
   // url
   // logged in user profile
   async function loggedInUserProfile() {
@@ -39,10 +40,18 @@ export const useProfileStore = defineStore('profile', () => {
     }
   }
 
-  function updateProfile(requestBody: Profile) {
+  async function updateProfile(requestBody: Profile) {
     try {
+      loading.value = true
+      const response = await Api.put<Profile>('/profile/' + requestBody.id, requestBody)
+      profile.value = requestBody
+      if (response.status === 200) {
+        toast.success('Profile updated successfully!')
+      }
+      return response.data
     } catch (error) {
-      if (error instanceof Error) toast.error(error.message)
+    } finally {
+      loading.value = false
     }
   }
 
@@ -95,3 +104,7 @@ export const useProfileStore = defineStore('profile', () => {
     deleteEmployment
   }
 })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useProfileStore, import.meta.url))
+}

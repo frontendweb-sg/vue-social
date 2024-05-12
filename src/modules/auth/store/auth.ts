@@ -138,14 +138,13 @@ export const useAuthStore = defineStore('auth', () => {
   }
 
   function $reset() {
-    // loading.value = false
-    // user.value = null
-    // accessToken.value = null
+    loading.value = false
+    user.value = null
+    accessToken.value = null
 
-    console.log('fire')
-    // localStorage.removeItem('user')
-    // localStorage.removeItem('accessToken')
-    // localStorage.removeItem('expireTime')
+    localStorage.removeItem('user')
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('expireTime')
   }
 
   // computed properties

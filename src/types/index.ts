@@ -7,18 +7,7 @@ export type Color =
   | 'default'
   | 'gray'
   | 'danger'
-export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
-
-export enum Gender {
-  male = 'Male',
-  female = 'Female',
-  unknown = 'Unknown'
-}
-export enum Proficiency {
-  beginer = 'Beginer',
-  intermediate = 'Intermediate',
-  expert = 'expert'
-}
+export type Size = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl'
 
 export interface Media {
   public_id: string
@@ -103,12 +92,13 @@ export interface Education {
   summary?: string
   grade?: string
 }
-export interface Address {}
+
 export interface Profile {
+  id?: string
   user: string
   company: string
   designation: string
-  gender: Gender
+  gender: string
   dob: string
   summary: string
   hobbies: string[]
@@ -127,3 +117,4 @@ export interface Profile {
   social: Social
   active: boolean
 }
+export interface Address {}

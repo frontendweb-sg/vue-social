@@ -15,7 +15,7 @@
       <base-textarea name="summary" placeholder="Summary" class="col-span-3" />
     </div>
     <div class="flex justify-end space-x-4 mt-5">
-      <base-button type="button" @click="handleReset" color="secondary">
+      <base-button type="button" @click="onCancel" color="secondary">
         {{ AppContent.cancel }}
       </base-button>
       <base-button :loading="loading" :disabled="loading" type="submit">
@@ -31,9 +31,20 @@ import { GenderOptions } from '@/utils/constants'
 import { AppContent } from '@/utils/content'
 import { date, number, object, string } from 'yup'
 import { useProfileStore } from '../store/profile'
+import { Gender } from '@/utils/enums'
+import { onMounted, watch } from 'vue'
+import { format } from 'date-fns'
 import { storeToRefs } from 'pinia'
+import type { Profile } from '@/types'
 
-const { handleReset, handleSubmit } = useForm({
+const emit = defineEmits<{
+  (e: 'close'): void
+}>()
+
+const profileStore = useProfileStore()
+const { profile, loading } = storeToRefs(profileStore)
+
+const { handleReset, handleSubmit, setValues } = useForm<Profile>({
   validationSchema: object().shape({
     company: string().required('Company is required!'),
     gender: string().required('Gender is required!'),
@@ -48,9 +59,10 @@ const { handleReset, handleSubmit } = useForm({
     salary: string().default(''),
     summary: string().default('')
   }),
+
   initialValues: {
     company: '',
-    gender: 'male',
+    gender: Gender.male,
     dob: '',
     designation: '',
     website: '',
@@ -58,16 +70,40 @@ const { handleReset, handleSubmit } = useForm({
     qualification: '',
     gitusername: '',
     totalExp: 0,
-    noticeperiod: '',
-    salary: '',
+    noticeperiod: 0,
+    salary: 0,
     summary: ''
   }
 })
 
-const profileStore = useProfileStore()
-const { loading } = storeToRefs(profileStore)
+const onCancel = () => {
+  emit('close')
+  handleReset()
+}
+
 const onSubmit = handleSubmit(async (values) => {
-  await profileStore.addProfile(values as any)
+  if ((profile.value as Profile)?.id) {
+    await profileStore.updateProfile(values as any)
+  } else {
+    await profileStore.addProfile(values as any)
+    handleReset()
+  }
+  emit('close')
+})
+
+watch(
+  () => profile.value as Profile,
+  (v: Profile) => {
+    if (v)
+      setValues({
+        ...v,
+        dob: format(new Date(v.dob), 'yyyy-MM-dd')
+      })
+  }
+)
+
+onMounted(() => {
+  profileStore.loggedInUserProfile()
 })
 </script>
 

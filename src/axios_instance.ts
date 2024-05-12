@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { raiseToast } from './utils'
+import { useAuthStore } from './modules/auth/store/auth'
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
@@ -22,10 +23,11 @@ instance.interceptors.response.use(
   (response) => response,
   (error) => {
     raiseToast(error)
-    // const store = useAuthStore()
-    // if (error.response.status === 401) {
-    //   store.logout()
-    // }
+    console.log('E', error)
+    const store = useAuthStore()
+    if (error.response.status === 401) {
+      store.logout()
+    }
   }
 )
 

@@ -9,8 +9,9 @@ import BaseListSkeleton from '@/components/ui/BaseListSkeleton.vue'
 import BaseDate from '@/components/ui/BaseDate.vue'
 import BaseTextarea from '@/components/ui/BaseTextarea.vue'
 import BaseSelect from '@/components/ui/BaseSelect.vue'
-import BaseDatePicker from '@/components/ui/BaseDatePicker.vue'
+// import BaseDatePicker from '@/components/ui/BaseDatePicker.vue'
 import BaseFormGroup from '@/components/ui/BaseFormGroup.vue'
+import BaseModal from '@/components/ui/BaseModal.vue'
 
 export const GlobalComponents = {
   install(app: App, options: { [key: string]: string }) {
@@ -25,6 +26,7 @@ export const GlobalComponents = {
     app.component('BaseDate', BaseDate)
     app.component('BaseTextarea', BaseTextarea)
     app.component('BaseSelect', BaseSelect)
-    app.component('BaseDatePicker', BaseDatePicker)
+    // app.component('BaseDatePicker', BaseDatePicker)
+    app.component('BaseModal', BaseModal)
   }
 }
