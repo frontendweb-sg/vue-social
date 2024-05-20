@@ -25,6 +25,14 @@ import AppFooter from '@/components/layout/AppFooter.vue'
 import Hero from './widgets/Hero.vue'
 import UserNavMenu from './widgets/UserNavMenu.vue'
 import Sidebar from './widgets/Sidebar.vue'
+import { onBeforeMount, onMounted } from 'vue'
+import { useUserStore } from './store/user'
+
+const userStore = useUserStore()
+
+onBeforeMount(async () => {
+  await userStore.fetchLoggedInUser()
+})
 </script>
 
 <style>

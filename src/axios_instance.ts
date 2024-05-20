@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { raiseToast } from './utils'
 import { useAuthStore } from './modules/auth/store/auth'
 
 const instance = axios.create({
@@ -22,7 +23,7 @@ instance.interceptors.response.use(
   (response) => response,
   (error) => {
     const store = useAuthStore()
-    if ((error.response.status = 401)) {
+    if (error.response.status === 401) {
       store.logout()
     }
   }

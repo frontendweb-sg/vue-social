@@ -48,8 +48,8 @@ export const useAuthStore = defineStore('auth', () => {
   async function login(requestBody: LoginRequest) {
     try {
       loading.value = true
-      const { data } = await Api.post<LoginResponse>('/auth', requestBody)
-      const { accessToken, expireIn, user } = data
+      const response = await Api.post<LoginResponse>('/auth', requestBody)
+      const { accessToken, expireIn, user } = response?.data
 
       const expireTime = new Date(Date.now()).getTime() + expireIn * 1000
 
@@ -66,7 +66,9 @@ export const useAuthStore = defineStore('auth', () => {
         router.replace('/user')
       }
     } catch (error) {
-      raiseToast(error as Error)
+      if (import.meta.env.DEV) {
+        console.log('AUTH error', error)
+      }
     } finally {
       loading.value = false
     }

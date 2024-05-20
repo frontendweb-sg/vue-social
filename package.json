@@ -16,8 +16,10 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@vuepic/vue-datepicker": "^8.5.1",
     "@vueuse/core": "^10.9.0",
     "axios": "^1.6.8",
+    "date-fns": "^3.6.0",
     "lucide-vue-next": "^0.376.0",
     "pinia": "^2.1.7",
     "vee-validate": "^4.12.6",

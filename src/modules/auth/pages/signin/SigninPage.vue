@@ -49,6 +49,10 @@ const validation = object({
 })
 
 const { handleReset, handleSubmit, meta } = useForm({
+  initialValues: {
+    email: '',
+    password: ''
+  },
   validationSchema: validation
 })
 

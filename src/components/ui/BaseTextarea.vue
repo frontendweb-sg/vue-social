@@ -5,22 +5,27 @@
     :valid="meta.touched && meta.valid"
     :class="[$attrs.class]"
     :errorMessage="errorMessage"
-    :iconProps="iconProps"
   >
-    <input
+    <textarea
+      cols="5"
+      rows="4"
       v-on="handlers"
       v-bind="$attrs"
       :value="value"
-      :type="type"
-      class="text-sm font-lato bg-transparent w-full p-3 outline-none placeholder:font-normal"
-    />
+      class="text-sm font-semibold bg-transparent w-full p-3 outline-none"
+    ></textarea>
+    <span class="absolute bottom-0 left-0 px-4 text-xs py-2 text-slate-600">
+      {{ AppContent.words }}
+      {{ String(value).split(' ').length }}
+      - {{ AppContent.length }}
+      {{ String(value).length }}
+    </span>
   </base-form-group>
 </template>
 
-<script setup lang="ts">
-import type { LucideProps } from 'lucide-vue-next'
+<script lang="ts" setup>
 import { useField } from 'vee-validate'
-import type { InputTypeHTMLAttribute } from 'vue'
+import { AppContent } from '@/utils/content'
 
 defineOptions({ inheritAttrs: false })
 
@@ -28,14 +33,8 @@ const props = withDefaults(
   defineProps<{
     name: string
     label?: string
-    type?: InputTypeHTMLAttribute
-    isPassowrd?: boolean
-    iconProps?: LucideProps & SVGAElement
   }>(),
-  {
-    type: 'text',
-    isPassowrd: false
-  }
+  {}
 )
 
 const { meta, value, errorMessage, handleBlur, handleChange } = useField<string>(

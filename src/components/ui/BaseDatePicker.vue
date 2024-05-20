@@ -1,44 +1,39 @@
 <template>
   <base-form-group
     :label="label"
-    :invalid="meta.touched && !meta.valid"
-    :valid="meta.touched && meta.valid"
-    :class="[$attrs.class]"
-    :errorMessage="errorMessage"
-    :iconProps="iconProps"
+    :valid="meta.touched && !meta.valid"
+    :invalid="meta.touched && meta.valid"
   >
     <input
       v-on="handlers"
       v-bind="$attrs"
       :value="value"
       :type="type"
-      class="text-sm font-lato bg-transparent w-full p-3 outline-none placeholder:font-normal"
+      class="text-sm font-semibold bg-transparent w-full p-3 outline-none"
     />
   </base-form-group>
 </template>
 
 <script setup lang="ts">
-import type { LucideProps } from 'lucide-vue-next'
 import { useField } from 'vee-validate'
-import type { InputTypeHTMLAttribute } from 'vue'
 
 defineOptions({ inheritAttrs: false })
 
+type DateType = 'time' | 'weak' | 'month' | 'date' | 'datetime' | 'datetime-local'
 const props = withDefaults(
   defineProps<{
     name: string
     label?: string
-    type?: InputTypeHTMLAttribute
-    isPassowrd?: boolean
-    iconProps?: LucideProps & SVGAElement
+    formatString?: string
+    type?: DateType
   }>(),
   {
-    type: 'text',
-    isPassowrd: false
+    type: 'datetime-local',
+    formatString: 'MM/dd/yyyy'
   }
 )
 
-const { meta, value, errorMessage, handleBlur, handleChange } = useField<string>(
+const { meta, value, errorMessage, handleBlur, handleChange } = useField(
   props.name,
   {},
   {
