@@ -45,7 +45,7 @@ const profileStore = useProfileStore()
 const { loading, profile } = storeToRefs(profileStore)
 
 const { handleReset, handleSubmit, setValues } = useForm<Profile>({
-  validationSchema: object().shape({
+  validationSchema: object({
     company: string().required('Company is required!'),
     gender: string().required('Gender is required!'),
     dob: date().required('Date of birth is required!'),
@@ -63,7 +63,7 @@ const { handleReset, handleSubmit, setValues } = useForm<Profile>({
   initialValues: {
     company: '',
     gender: Gender.male,
-    dob: '',
+    dob: new Date().toString(),
     designation: '',
     website: '',
     address: '',

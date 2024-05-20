@@ -81,13 +81,14 @@ export interface Employment {
   projects?: Project[]
 }
 export interface Education {
+  id?: string
   instituteName: string // kic
   degree: string // BCA
   fieldOfStudy: string
   current?: boolean
   activityAndSocial?: string
-  from: Date | null
-  to?: Date | null
+  from: string
+  to: null | string
   location?: string
   summary?: string
   grade?: string

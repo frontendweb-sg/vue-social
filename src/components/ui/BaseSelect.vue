@@ -1,18 +1,8 @@
 <template>
-  <base-form-group
-    :label="label"
-    :invalid="meta.touched && !meta.valid"
-    :valid="meta.touched && meta.valid"
-    :class="[$attrs.class]"
-    :errorMessage="errorMessage"
-    :iconProps="{ class: 'right-5' }"
-  >
-    <select
-      class="text-sm font-semibold bg-transparent w-full p-3 outline-none"
-      v-bind="$attrs"
-      v-on="handlers"
-      :value="value"
-    >
+  <base-form-group :label="label" :invalid="meta.touched && !meta.valid" :valid="meta.touched && meta.valid"
+    :class="[$attrs.class]" :errorMessage="errorMessage" :iconProps="{ class: 'right-5' }">
+    <select class="text-sm font-semibold bg-transparent w-full p-3 outline-none" v-bind="$attrs" v-on="handlers"
+      :value="value">
       <option v-for="option in options" :key="JSON.stringify(option)" :value="defaultValue(option)">
         {{ optionLabel(option) }}
       </option>
@@ -20,20 +10,16 @@
   </base-form-group>
 </template>
 
-<script  setup lang="ts" generic="T">
+<script setup lang="ts" generic="T  extends {label:string,value:string}">
 import { useField } from 'vee-validate'
 defineOptions({ inheritAttrs: false })
-
-interface Fun {
-  (option: T): string
-}
 
 const props = defineProps<{
   name: string
   label?: string
   options: T[]
-  getOptionLabel?: Fun
-  getOptionValue?: Fun
+  getOptionLabel?: (option: T) => string
+  getOptionValue?: (option: T) => string
 }>()
 
 // option value
@@ -59,5 +45,4 @@ const handlers = {
 }
 </script>
 
-<style>
-</style>
+<style></style>

@@ -5,6 +5,7 @@ export const AppContent = {
   signin: 'Sign in',
   signup: 'Sign up',
   save: 'Save',
+  update: 'Update',
   request: 'Request',
   words: 'Words :',
   length: 'Length :',

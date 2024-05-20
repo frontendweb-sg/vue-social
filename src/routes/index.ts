@@ -100,7 +100,7 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/:matchPath(.*)',
-    component: () => import('@/pages/NotFound.vue')
+    component: () => import(/* webpackChunkName: "not-found */ '@/pages/NotFound.vue')
   }
 ]
 

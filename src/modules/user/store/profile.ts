@@ -1,11 +1,12 @@
 import { Api } from '@/axios_instance'
 import type { Education, Employment, Profile } from '@/types'
+import { removeEmptyKeyFromObject } from '@/utils'
 import { defineStore, acceptHMRUpdate } from 'pinia'
 import { ref } from 'vue'
 import { toast } from 'vue3-toastify'
 
 export const useProfileStore = defineStore('profile', () => {
-  const profile = ref<Profile | object>({})
+  const profile = ref<Profile | null>(null)
   const loading = ref(false)
 
   // url
@@ -14,7 +15,6 @@ export const useProfileStore = defineStore('profile', () => {
     try {
       const { data } = await Api.get<Profile>('/user/profile')
       profile.value = data
-      console.log('HI', data)
     } catch (error) {
       if (error instanceof Error) toast.error(error.message)
     }
@@ -22,6 +22,7 @@ export const useProfileStore = defineStore('profile', () => {
 
   function getProfileByUserId(userId: string) {
     try {
+      console.log('userId', userId)
     } catch (error) {
       if (error instanceof Error) toast.error(error.message)
     }
@@ -32,10 +33,12 @@ export const useProfileStore = defineStore('profile', () => {
       loading.value = true
       const response = await Api.post<Profile>('/profile', requestBody)
       if (response.status === 201) {
+        profile.value = response.data
         toast.success('Profile added!')
       }
       return response.data
     } catch (error) {
+      console.log(error)
     } finally {
       loading.value = false
     }
@@ -51,41 +54,22 @@ export const useProfileStore = defineStore('profile', () => {
       }
       return response.data
     } catch (error) {
+      console.log(error)
     } finally {
       loading.value = false
     }
   }
 
-  function addResume(requestBody: any) {
+  async function addEducation(profileId: string, requestBody: Education) {
     try {
-    } catch (error) {
-      if (error instanceof Error) toast.error(error.message)
-    }
-  }
-
-  function addEducation(requestBody: Education) {
-    try {
-    } catch (error) {
-      if (error instanceof Error) toast.error(error.message)
-    }
-  }
-
-  function deleteEducation(eduId: string) {
-    try {
-    } catch (error) {
-      if (error instanceof Error) toast.error(error.message)
-    }
-  }
-
-  function addEmployment(requestBody: Employment) {
-    try {
-    } catch (error) {
-      if (error instanceof Error) toast.error(error.message)
-    }
-  }
-
-  function deleteEmployment(empId: string) {
-    try {
+      const response = await Api.post(
+        `/profile/${profileId}/education`,
+        removeEmptyKeyFromObject(requestBody)
+      )
+      if (response.status === 201) {
+        toast.success('Education added successfully!')
+      }
+      console.log(response.data, 'edu')
     } catch (error) {
       if (error instanceof Error) toast.error(error.message)
     }
@@ -98,11 +82,7 @@ export const useProfileStore = defineStore('profile', () => {
     getProfileByUserId,
     addProfile,
     updateProfile,
-    addResume,
-    addEducation,
-    deleteEducation,
-    addEmployment,
-    deleteEmployment
+    addEducation
   }
 })
 

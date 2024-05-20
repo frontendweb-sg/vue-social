@@ -12,6 +12,7 @@ import BaseSelect from '@/components/ui/BaseSelect.vue'
 // import BaseDatePicker from '@/components/ui/BaseDatePicker.vue'
 import BaseFormGroup from '@/components/ui/BaseFormGroup.vue'
 import BaseModal from '@/components/ui/BaseModal.vue'
+import BaseCheckbox from '@/components/ui/BaseCheckbox.vue'
 
 export const GlobalComponents = {
   install(app: App, options: { [key: string]: string }) {
@@ -26,6 +27,7 @@ export const GlobalComponents = {
     app.component('BaseDate', BaseDate)
     app.component('BaseTextarea', BaseTextarea)
     app.component('BaseSelect', BaseSelect)
+    app.component('BaseCheckbox', BaseCheckbox)
     // app.component('BaseDatePicker', BaseDatePicker)
     app.component('BaseModal', BaseModal)
   }
