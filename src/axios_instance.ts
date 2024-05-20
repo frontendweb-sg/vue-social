@@ -22,8 +22,6 @@ instance.interceptors.request.use((config) => {
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
-    raiseToast(error)
-    console.log('E', error)
     const store = useAuthStore()
     if (error.response.status === 401) {
       store.logout()

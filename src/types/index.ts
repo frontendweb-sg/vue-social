@@ -96,7 +96,7 @@ export interface Education {
 
 export interface Profile {
   id?: string
-  user: string
+  user: string | IUser
   company: string
   designation: string
   gender: string

@@ -1,19 +1,19 @@
 <template>
   <form @submit="onSubmit">
     <div class="grid grid-cols-2 gap-4">
-      <base-input name="instituteName" placeholder="Institute name" />
+      <base-input name="instituteName" class="col-span-2" placeholder="Institute name" />
       <base-input name="degree" placeholder="Degree" />
       <base-input name="fieldOfStudy" placeholder="Field of study" />
       <base-checkbox :options="{
         checkedValue: true,
         uncheckedValue: false
-      }" name="current" label="Current" />
-      <base-input name="activityAndSocial" placeholder="Institute name" />
-      <base-input name="from" type="date" placeholder="Institute name" />
-      <base-input name="to" type="date" placeholder="Institute name" />
-      <base-input name="location" placeholder="Institute name" />
-      <base-input name="grade" placeholder="Institute name" />
-      <base-textarea name="summary" placeholder="Institute name" />
+      }" name="current" label="Still Studying" />
+      <base-input name="activityAndSocial" placeholder="Activity and social" />
+      <base-input name="from" type="date" placeholder="From" />
+      <base-input name="to" type="date" placeholder="To" />
+      <base-input name="location" placeholder="Institute address" />
+      <base-input name="grade" placeholder="Grade" />
+      <base-textarea class="col-span-2" name="summary" placeholder="Summary" />
     </div>
     <div class="flex justify-end space-x-4 mt-5">
       <base-button type="button" @click="onCancel" color="secondary">
@@ -23,7 +23,6 @@
         {{ data ? AppContent.update : AppContent.save }}
       </base-button>
     </div>
-    {{ data }}
   </form>
 </template>
 
@@ -84,11 +83,11 @@ onBeforeMount(() => {
 
 const onSubmit = handleSubmit(async (values) => {
   if (values.id) {
-    console.log("UPdate")
+    await profileStore.updateEducation(props.profileId, values)
   } else {
-
     await profileStore.addEducation(props.profileId, values as unknown as Education)
   }
+  emit('close')
 })
 </script>
 

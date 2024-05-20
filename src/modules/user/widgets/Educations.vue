@@ -10,6 +10,9 @@
       {{ education }} <base-button @click="onEditing(education)">
         <EditIcon :size="16" />
       </base-button>
+      <base-button @click="profileStore.deleteEducation(profileId!, education.id!)">
+        <EditIcon :size="16" />
+      </base-button>
     </div>
   </base-card>
 
@@ -24,8 +27,11 @@ import EducationForm from './EducationForm.vue'
 import { useToggle } from '@/composable/useToggle'
 import { EditIcon } from 'lucide-vue-next'
 import { ref, watch } from 'vue';
+import { useProfileStore } from '../store/profile';
 
 const educationData = ref<null | Education>(null)
+
+const profileStore = useProfileStore()
 
 interface Props {
   educations: Education[],
